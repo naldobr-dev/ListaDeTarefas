@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListaDeTarefas.Views.MainPage"
+             Title="Lista de Tarefas">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#3d54a1" Offset="0.0" />
+            <GradientStop Color="#1C274C" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <VerticalStackLayout Padding="30" Spacing="25">
+        <HorizontalStackLayout>
+            <Image Source="title_icon" />
+            <Label Text=" Lista de Tarefas"
+               FontSize="32"
+               HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <Grid ColumnDefinitions="*, Auto">
+            <Entry Placeholder="✏️ Digite uma tarefa"
+                   Text="{Binding NovaTarefa}"
+                   HorizontalOptions="Fill"
+                   Grid.Column="0" />
+            <Button Text="➕"
+                    SemanticProperties.Hint="Adicionar tarefa"
+                    Command="{Binding AdicionarCommand}"
+                    Grid.Column="1" />
+        </Grid>
+
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Tarefas}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="30,*,Auto">
+                            <CheckBox IsChecked="{Binding Concluida}" />
+                            <Label Text="{Binding Nome}"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Margin="4,0"
+                                   TextDecorations="{Binding Concluida, Converter={StaticResource RiscarConverter}}" />
+                            <Button Text="🗑"
+                                    BackgroundColor="Transparent"
+                                    Grid.Column="2"
+                                    Command="{Binding DeleteCommand}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <Button Text="🧹 Limpar Concluídas" Command="{Binding LimparConcluidasCommand}" BackgroundColor="Red" />
+    </VerticalStackLayout>
+
+</ContentPage>
