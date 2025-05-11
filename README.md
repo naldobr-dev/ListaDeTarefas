@@ -26,7 +26,7 @@ Um aplicativo simples e funcional de lista de tarefas (To-Do List), desenvolvido
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/ListaDeTarefasMaui.git
+git clone https://github.com/naldobr-dev/ListaDeTarefas.git
 ````
 
 2. Abra a solução no **Visual Studio 2022+** com suporte ao .NET MAUI.
